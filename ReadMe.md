@@ -23,19 +23,26 @@
         //Показуем что будет еще один пункт меню
         menu->slots++;
 #####Создать тело меню
+        //Заголовок меню
         menu->properties.header = "Меню программы:";
+        //Нужная хрень, непомню для чего, лучше держать на 0
         menu->properties.height = 0;
+        //Координаты меню
         menu->properties.coords.x = 7;
         menu->properties.coords.y = 4;
+        //Размер меню
         menu->properties.size.height = 14;
         menu->properties.size.width = 30;
+        //Бинд кнопок останова меню. Ps: никто не мешает сделать отдельный пункт 
+        назад с NULL указателем на функцию, который будет останавливать меню.
         menu->properties.dbreak.binds = "PЗ";
+        //Для будущей разработки, а может и выкину его вовсе.
         menu->properties.prioritet = 0;
 #####Вызвать функцию создания меню
         SmartChoose(menu);
 ##Полный пример:
         hStdout = GetStdHandle(STD_OUTPUT_HANDLE);
-
+        
         int slots = 0;
         Menu *menu = NULL;
 
