@@ -1,51 +1,12 @@
 // CMenu.cpp : Defines the entry point for the console application.
 //
 
-#include "stdafx.h"
+#include "Structures.cpp"
 #include "Windows.h"
 #include "locale.h"
 #include "string.h"
 #include "time.h"
 #include "conio.h"
-
-typedef struct {
-	char *str;
-	int lengh;
-} Word;
-
-typedef struct {
-	char *binds;
-	int count;
-} Binds;
-
-typedef struct {
-	int x;
-	int y;
-} Point;
-
-typedef struct {
-	int width;
-	int height;
-} Size;
-
-/*Структура настрек меню*/
-typedef struct {
-	Point coords;
-	Size size;
-	Binds dbreak;
-	int height;
-	int prioritet;
-	char *header;
-} Properties;
-
-/*Структура меню*/
-typedef struct {
-	Word *text;
-	Binds *binds;
-	Properties properties;
-	int *pointers;
-	int slots;
-} Menu;
 
 
 HANDLE hStdout;
@@ -54,7 +15,7 @@ void MassageBox(char*, int, Point*);
 void CrateBorder(Point*, Point*);
 void SmartChoose(Menu*);
 Menu *CMenu(Menu*, int);
-void MenuFree(Menu*)
+void MenuFree(Menu*);
 
 /*Кастомная очистка екрана*/
 void cls(HANDLE hConsole)
@@ -96,7 +57,7 @@ Menu *CMenu(Menu *menu, int slots) {
 /*Инициализация меню*/
 void SmartChoose(Menu *menu) {
 	char i;
-	int d = 0, j, g;
+	unsigned int d = 0, j, g;
 	Point p, p1;
 	HANDLE hStdout;
 	hStdout = GetStdHandle(STD_OUTPUT_HANDLE);
@@ -127,7 +88,7 @@ void SmartChoose(Menu *menu) {
 		if (menu->slots > 0) {
 			for (j = 0; j <= menu->slots; j++) {
 				if (menu->binds[j].binds != NULL) {
-					for (g = 0; g < menu->binds[j].count; g++) {
+					for (g = 0; g < strlen(menu->binds[j].binds); g++) {
 						if (menu->binds[j].binds[g] == i && menu->binds[j].binds[g] != (int)NULL) {
 							cls(hStdout);
 							void(*does)() = (void*)menu->pointers[j];
@@ -141,7 +102,7 @@ void SmartChoose(Menu *menu) {
 		}
 		/*Проверка на перерывание если таковое имееться*/
 		if (menu->properties.dbreak.binds != NULL) {
-			for (j = 0; j < menu->properties.dbreak.count; j++) {
+			for (j = 0; j < strlen(menu->properties.dbreak.binds); j++) {
 				if (i == menu->properties.dbreak.binds[j]) {
 					d = 1;
 				}
@@ -245,3 +206,5 @@ void MassageBox(char* string, int sl, Point* p) {
 		}
 	}
 }
+
+#include "stdafx.h"
