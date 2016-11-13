@@ -1,6 +1,9 @@
 #CMenu
 ####Визуализироване меню, которое очень простое в использовании.
 ##Инструкция по использувании:
+#####Рабочие файлы:
+######Cmenu.cpp
+######Structures.cpp
 #####Вставляем код в свой
         #include "CMenu.cpp"
 #####Прописать очитку екрана
@@ -15,8 +18,6 @@
         menu->text[menu->slots].str = "D)Стек";
         //Кнопки нажатия которых связывают с етим пунктом
         menu->binds[menu->slots].binds = "DВ";
-        //Число забиндженых кнопок
-        menu->binds[menu->slots].count = 2;
         //Указатель на функцию которая привязана к етому пункту
         menu->pointers[menu->slots] = (int)(void*)&stek_menu;
         //Показуем что будет еще один пункт меню
@@ -29,7 +30,6 @@
         menu->properties.size.height = 14;
         menu->properties.size.width = 30;
         menu->properties.dbreak.binds = "PЗ";
-        menu->properties.dbreak.count = 2;
         menu->properties.prioritet = 0;
 #####Вызвать функцию создания меню
         SmartChoose(menu);
@@ -43,19 +43,16 @@
 
         menu->text[menu->slots].str = "D)Стек";
         menu->binds[menu->slots].binds = "DВ";
-        menu->binds[menu->slots].count = 2;
         menu->pointers[menu->slots] = (int)(void*)&stek_menu;
         menu->slots++;
 
         menu->text[menu->slots].str = "F)Дек";
         menu->binds[menu->slots].binds = "FА";
-        menu->binds[menu->slots].count = 2;
         menu->pointers[menu->slots] = (int)(void*)&dek_menu;
         menu->slots++;
 
         menu->text[menu->slots].str = "G)Лист";
         menu->binds[menu->slots].binds = "GП";
-        menu->binds[menu->slots].count = 2;
         menu->pointers[menu->slots] = (int)(void*)&sap;
 
         menu->properties.header = "Меню программы:";
@@ -65,7 +62,6 @@
         menu->properties.size.height = 14;
         menu->properties.size.width = 30;
         menu->properties.dbreak.binds = "PЗ";
-        menu->properties.dbreak.count = 2;
         menu->properties.prioritet = 0;
 
         SmartChoose(menu);
