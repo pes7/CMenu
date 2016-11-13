@@ -16,26 +16,34 @@
 #####Создать тело пункта
         //Название пункта
         menu->text[menu->slots].str = "D)Стек";
+        
         //Кнопки нажатия которых связывают с етим пунктом
         menu->binds[menu->slots].binds = "DВ";
+        
         //Указатель на функцию которая привязана к етому пункту
         menu->pointers[menu->slots] = (int)(void*)&stek_menu;
+        
         //Показуем что будет еще один пункт меню
         menu->slots++;
 #####Создать тело меню
         //Заголовок меню
         menu->properties.header = "Меню программы:";
+        
         //Нужная хрень, непомню для чего, лучше держать на 0
         menu->properties.height = 0;
+        
         //Координаты меню
         menu->properties.coords.x = 7;
         menu->properties.coords.y = 4;
+        
         //Размер меню
         menu->properties.size.height = 14;
         menu->properties.size.width = 30;
+        
         //Бинд кнопок останова меню. Ps: никто не мешает сделать отдельный пункт 
         назад с NULL указателем на функцию, который будет останавливать меню.
         menu->properties.dbreak.binds = "PЗ";
+        
         //Для будущей разработки, а может и выкину его вовсе.
         menu->properties.prioritet = 0;
 #####Вызвать функцию создания меню
